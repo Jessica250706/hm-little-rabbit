@@ -1,6 +1,6 @@
 <template>
-  <div>Hello Vue3</div>
-  <el-button type="primary">click</el-button>
+  <!-- 一级路由出口组件 -->
+  <router-view />
 </template>
 
 <script lang="ts" setup>
