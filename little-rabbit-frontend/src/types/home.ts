@@ -2,7 +2,7 @@ export interface CategoryVO {
   /**
    * 子分类数组
    */
-  children: Child[]
+  children: CategoryChild[]
   /**
    * 分类下属商品
    */
@@ -22,7 +22,55 @@ export interface CategoryVO {
   [property: string]: any
 }
 
-export interface Child {
+export interface GoodsVO {
+  /**
+   * 子分类数组
+   */
+  children: GoodsChild[]
+  /**
+   * 分类下属商品
+   */
+  goods: Good[]
+  /**
+   * 分类id
+   */
+  id: string
+  /**
+   * 分类名字
+   */
+  name: string
+  /**
+   * 分类图片
+   */
+  picture: string
+  /**
+   * 销售简介
+   */
+  saleInfo: string
+  [property: string]: any
+}
+
+export interface GoodsChild {
+  /**
+   * 二级分类id
+   */
+  id: string
+  /**
+   * 二级分类名字
+   */
+  name: string
+  /**
+   * 分类层级，2 表示二级分类
+   */
+  layer: number
+  /**
+   * 父级分类id，null 表示无父级
+   */
+  parent: string | null
+  [property: string]: any
+}
+
+export interface CategoryChild {
   /**
    * 三级分类数组，三级分类数组(暂无)
    */

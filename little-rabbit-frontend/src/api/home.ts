@@ -1,4 +1,4 @@
-import type { BannerVO, CategoryVO, HotVO, NewVO } from '@/types/home'
+import type { BannerVO, CategoryVO, GoodsVO, HotVO, NewVO } from '@/types/home'
 import httpInstance from '@/utils/http'
 
 /**
@@ -39,4 +39,11 @@ export const getHotAPI = (limit?: string) => {
       limit,
     },
   })
+}
+
+/**
+ * @description: 获取-所有商品
+ */
+export const getGoodsAPI = () => {
+  return httpInstance.get<GoodsVO[]>('/home/goods')
 }
