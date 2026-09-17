@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
-import App from './App.vue'
-import ElementPlus from 'element-plus'
-// import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import router from '@/router'
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
+// import { zhCn } from 'element-plus/es/locales.mjs'
 import { createPinia } from 'pinia'
 import { createPersistedState } from 'pinia-plugin-persistedstate'
-import { zhCn } from 'element-plus/es/locales.mjs'
+import router from '@/router'
+import App from './App.vue'
+import '@/styles/common.scss'
 
 const app = createApp(App)
 const pinia = createPinia()
