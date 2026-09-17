@@ -56,6 +56,7 @@ export default defineConfigWithVueTs(
           pathGroupsExcludedImportTypes: ['builtin'],
           'newlines-between': 'never',
           alphabetize: { order: 'asc', caseInsensitive: true },
+          named: true,
         },
       ],
     },

@@ -5,6 +5,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import { zhCn } from 'element-plus/es/locales.mjs'
 import { createPinia } from 'pinia'
 import { createPersistedState } from 'pinia-plugin-persistedstate'
+import { lazyPlugin } from '@/directives/lazy.ts'
 import router from '@/router'
 import App from './App.vue'
 import '@/styles/common.scss'
@@ -15,6 +16,7 @@ const persist = createPersistedState()
 pinia.use(persist)
 app.use(pinia)
 app.use(router)
+app.use(lazyPlugin)
 // app.use(ElementPlus, {
 //   locale: zhCn,
 // })
