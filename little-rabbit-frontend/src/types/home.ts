@@ -1,8 +1,8 @@
-export interface CategoryVO {
+export interface HomeCategoryHeadVO {
   /**
    * 子分类数组
    */
-  children: CategoryChild[]
+  children: HomeCategoryHeadChild[]
   /**
    * 分类下属商品
    */
@@ -22,11 +22,11 @@ export interface CategoryVO {
   [property: string]: any
 }
 
-export interface GoodsVO {
+export interface HomeGoodsVO {
   /**
    * 子分类数组
    */
-  children: GoodsChild[]
+  children: HomeGoodsChild[]
   /**
    * 分类下属商品
    */
@@ -50,7 +50,7 @@ export interface GoodsVO {
   [property: string]: any
 }
 
-export interface GoodsChild {
+export interface HomeGoodsChild {
   /**
    * 二级分类id
    */
@@ -70,7 +70,7 @@ export interface GoodsChild {
   [property: string]: any
 }
 
-export interface CategoryChild {
+export interface HomeCategoryHeadChild {
   /**
    * 三级分类数组，三级分类数组(暂无)
    */

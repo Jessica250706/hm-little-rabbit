@@ -24,11 +24,11 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { getGoodsAPI } from '@/api/home.ts'
-import type { GoodsVO } from '@/types/home'
+import type { HomeGoodsVO } from '@/types/home'
 import GoodsItem from './GoodsItem.vue'
 import HomePanel from './HomePanel.vue'
 
-const goodsProduct = ref<GoodsVO[]>([])
+const goodsProduct = ref<HomeGoodsVO[]>([])
 const getGoods = async () => {
   const { result } = await getGoodsAPI()
   goodsProduct.value = result

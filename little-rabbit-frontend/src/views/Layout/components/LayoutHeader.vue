@@ -5,8 +5,13 @@
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
       <ul class="app-header-nav">
+        <li class="home">
+          <RouterLink to="/home" active-class="active">首页</RouterLink>
+        </li>
         <li class="home" v-for="category in categoryStore.categoryList" :key="category.id">
-          <RouterLink to="/">{{ category.name }}</RouterLink>
+          <RouterLink :to="`/category/${category.id}`" active-class="active">
+            {{ category.name }}
+          </RouterLink>
         </li>
       </ul>
       <div class="search">
