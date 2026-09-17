@@ -1,6 +1,7 @@
 <template>
   <!-- 一级路由出口组件 -->
   <router-view />
+  <div class="test">test</div>
 </template>
 
 <script lang="ts" setup>
@@ -14,4 +15,8 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.test {
+  color: $priceColor;
+}
+</style>
