@@ -3,17 +3,7 @@
     <div class="container">
       <RouterLink class="logo" to="/" />
       <!-- 导航区域 -->
-      <ul class="app-header-nav">
-        <li class="home">
-          <RouterLink to="/home" active-class="active">首页</RouterLink>
-        </li>
-        <li class="home" v-for="category in categoryStore.categoryList" :key="category.id">
-          <RouterLink :to="`/category/${category.id}`" active-class="active">
-            {{ category.name }}
-          </RouterLink>
-        </li>
-      </ul>
-
+      <AppHeaderNav />
       <div class="right">
         <RouterLink to="/">品牌</RouterLink>
         <RouterLink to="/">专题</RouterLink>
@@ -24,11 +14,9 @@
 
 <script lang="ts" setup>
 import { useScroll } from '@vueuse/core'
-import { useCategoryStore } from '@/stores/category.ts'
+import AppHeaderNav from './AppHeaderNav.vue'
 
 const { y } = useScroll(window)
-
-const categoryStore = useCategoryStore()
 </script>
 
 <style scoped lang="scss">
@@ -81,37 +69,6 @@ const categoryStore = useCategoryStore()
       &:hover {
         color: $xtxColor;
       }
-    }
-  }
-}
-
-.app-header-nav {
-  width: 820px;
-  display: flex;
-  padding-left: 40px;
-  position: relative;
-  z-index: 998;
-
-  li {
-    margin-right: 40px;
-    width: 38px;
-    text-align: center;
-
-    a {
-      font-size: 16px;
-      line-height: 32px;
-      height: 32px;
-      display: inline-block;
-
-      &:hover {
-        color: $xtxColor;
-        border-bottom: 1px solid $xtxColor;
-      }
-    }
-
-    .active {
-      color: $xtxColor;
-      border-bottom: 1px solid $xtxColor;
     }
   }
 }

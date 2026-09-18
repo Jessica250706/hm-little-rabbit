@@ -6,6 +6,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/views/Layout/Index.vue'),
+      redirect: '/home',
       children: [
         {
           path: '/home',
@@ -15,6 +16,11 @@ const router = createRouter({
           path: '/category/:id',
           component: () => import('@/views/Category/Index.vue'),
         },
+        {
+          path: '/category/:id/sub/:subId',
+          name: 'subCategory',
+          component: () => import('@/views/SubCategory/Index.vue'),
+        },
       ],
     },
     {
@@ -22,6 +28,12 @@ const router = createRouter({
       component: () => import('@/views/Login/Index.vue'),
     },
   ],
+  // 路由滚动行为定制
+  scrollBehavior() {
+    return {
+      top: 0,
+    }
+  },
 })
 
 export default router

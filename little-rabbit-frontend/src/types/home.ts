@@ -102,7 +102,7 @@ export interface Good {
   /**
    * 商品折扣，如为null时，即无折扣
    */
-  discount: null
+  discount?: string | null
   /**
    * 商品id
    */
@@ -120,7 +120,7 @@ export interface Good {
    */
   picture: string
   /**
-   * 商品价格
+   * 商品价格（字符串，如 "59.00"）
    */
   price: string
   [property: string]: any
