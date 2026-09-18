@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Good } from '@/types/home'
+import type { Good } from '@/types/goods'
 
 defineProps<{
   goods: Good

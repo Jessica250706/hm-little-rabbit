@@ -1,3 +1,5 @@
+import type { Good } from './goods'
+
 export interface HomeCategoryHeadVO {
   /**
    * 子分类数组
@@ -91,38 +93,6 @@ export interface HomeCategoryHeadChild {
    * 二级分类图片
    */
   picture: string
-  [property: string]: any
-}
-
-export interface Good {
-  /**
-   * 商品描述
-   */
-  desc: string
-  /**
-   * 商品折扣，如为null时，即无折扣
-   */
-  discount?: string | null
-  /**
-   * 商品id
-   */
-  id: string
-  /**
-   * 商品名字
-   */
-  name: string
-  /**
-   * 商品销量
-   */
-  orderNum: null
-  /**
-   * 商品图片
-   */
-  picture: string
-  /**
-   * 商品价格（字符串，如 "59.00"）
-   */
-  price: string
   [property: string]: any
 }
 

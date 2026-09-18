@@ -1,4 +1,5 @@
-import type { Good, HomeGoodsChild } from './home'
+import type { HomeGoodsChild } from './home'
+import type { Good } from './goods'
 import type { SortFieldType } from '@/constants/category'
 
 /**

@@ -9,17 +9,21 @@ const router = createRouter({
       redirect: '/home',
       children: [
         {
-          path: '/home',
+          path: 'home',
           component: () => import('@/views/Home/Index.vue'),
         },
         {
-          path: '/category/:id',
+          path: 'category/:id',
           component: () => import('@/views/Category/Index.vue'),
         },
         {
-          path: '/category/:id/sub/:subId',
+          path: 'category/:id/sub/:subId',
           name: 'subCategory',
           component: () => import('@/views/SubCategory/Index.vue'),
+        },
+        {
+          path: 'detail/:id',
+          component: () => import('@/views/Detail/Index.vue'),
         },
       ],
     },

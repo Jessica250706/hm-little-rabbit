@@ -28,7 +28,7 @@ import { useRoute } from 'vue-router'
 import { getCategoryFilterAPI, getSubCategoryAPI } from '@/api/category'
 import { SortField } from '@/constants/category'
 import type { CategoryDetailVO, CategoryGoodsParams } from '@/types/category'
-import type { Good } from '@/types/home'
+import type { Good } from '@/types/goods'
 import GoodsItem from '@/views/Home/components/GoodsItem.vue'
 
 const route = useRoute()
