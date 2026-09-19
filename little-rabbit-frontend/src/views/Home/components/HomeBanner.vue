@@ -2,7 +2,7 @@
   <div class="home-banner">
     <el-carousel height="500px">
       <el-carousel-item v-for="item in bannerList" :key="item.id">
-        <img :src="item.imgUrl" alt="" />
+        <img alt="" :src="item.imgUrl" />
       </el-carousel-item>
     </el-carousel>
   </div>

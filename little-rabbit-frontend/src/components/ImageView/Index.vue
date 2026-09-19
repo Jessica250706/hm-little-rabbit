@@ -2,16 +2,17 @@
   <div class="goods-image">
     <!-- 左侧大图-->
     <div
-      class="middle"
       ref="target"
+      class="middle"
       :style="{
         width: `${IMAGE_CONFIG.middleWidth}px`,
         height: `${IMAGE_CONFIG.middleHeight}px`,
       }"
     >
-      <img :src="imageList[activeIndex]" alt="" />
+      <img alt="" :src="imageList[activeIndex]" />
       <!-- 蒙层小滑块 -->
       <div
+        v-show="!isOutside"
         class="layer"
         :style="{
           width: `${layerWidth}px`,
@@ -20,7 +21,6 @@
           top: `${top}px`,
           transform: 'translate(-50%, -50%)',
         }"
-        v-show="!isOutside"
       ></div>
     </div>
     <!-- 小图列表 -->
@@ -28,14 +28,15 @@
       <li
         v-for="(img, index) in imageList"
         :key="index"
-        @mouseenter="handleEnter(index)"
         :class="{ active: index === activeIndex }"
+        @mouseenter="handleEnter(index)"
       >
-        <img :src="img" alt="" />
+        <img alt="" :src="img" />
       </li>
     </ul>
     <!-- 放大镜大图 -->
     <div
+      v-show="!isOutside"
       class="large"
       :style="{
         backgroundImage: `url(${imageList[activeIndex]})`,
@@ -45,7 +46,6 @@
         width: `${IMAGE_CONFIG.largeWidth}px`,
         height: `${IMAGE_CONFIG.largeHeight}px`,
       }"
-      v-show="!isOutside"
     ></div>
   </div>
 </template>

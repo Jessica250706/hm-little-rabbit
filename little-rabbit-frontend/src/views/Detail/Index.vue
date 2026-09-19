@@ -89,7 +89,7 @@
 
               <!-- 按钮组件 -->
               <div>
-                <el-button size="large" class="btn">加入购物车</el-button>
+                <el-button class="btn" size="large">加入购物车</el-button>
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@
                     </li>
                   </ul>
                   <!-- 图片 -->
-                  <img v-for="img in goodDetail?.details.pictures" :key="img" :src="img" alt="" />
+                  <img v-for="img in goodDetail?.details.pictures" :key="img" alt="" :src="img" />
                 </div>
               </div>
             </div>

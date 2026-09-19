@@ -2,8 +2,8 @@
   <div class="goods-hot">
     <h3>{{ title }}</h3>
     <!-- 商品区块 -->
-    <RouterLink to="/" class="goods-item" v-for="item in hotGoods" :key="item.id">
-      <img :src="item.picture" alt="" />
+    <RouterLink v-for="item in hotGoods" :key="item.id" class="goods-item" to="/">
+      <img alt="" :src="item.picture" />
       <p class="name ellipsis">{{ item.name }}</p>
       <p class="desc ellipsis">{{ item.desc }}</p>
       <p class="price">&yen;{{ item.price }}</p>

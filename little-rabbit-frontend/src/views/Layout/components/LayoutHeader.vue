@@ -8,7 +8,7 @@
       <AppHeaderNav />
       <div class="search">
         <i class="iconfont icon-search"></i>
-        <input type="text" placeholder="搜一搜" />
+        <input placeholder="搜一搜" type="text" />
       </div>
       <!-- 头部购物车 -->
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <HomePanel title="人气推荐" sub-title="人气爆款 不容错过">
+  <HomePanel sub-title="人气爆款 不容错过" title="人气推荐">
     <template #main>
       <ul class="goods-list">
         <li v-for="item in hotList" :key="item.id">

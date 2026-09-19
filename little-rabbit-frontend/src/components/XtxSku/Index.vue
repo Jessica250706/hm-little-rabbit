@@ -5,15 +5,15 @@
       <dd>
         <template v-for="val in item.values" :key="val.name">
           <img
-            :class="{ selected: val.selected, disabled: val.disabled }"
-            @click="clickSpecs(item, val)"
             v-if="val.picture"
+            :class="{ selected: val.selected, disabled: val.disabled }"
             :src="val.picture"
+            @click="clickSpecs(item, val)"
           />
           <span
+            v-else
             :class="{ selected: val.selected, disabled: val.disabled }"
             @click="clickSpecs(item, val)"
-            v-else
           >
             {{ val.name }}
           </span>

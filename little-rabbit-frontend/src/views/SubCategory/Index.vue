@@ -15,8 +15,8 @@
         <el-tab-pane label="最高人气" :name="SortField.ORDER_NUM" />
         <el-tab-pane label="评论最多" :name="SortField.EVALUATE_NUM" />
       </el-tabs>
-      <div class="body" v-infinite-scroll="load" :infinite-scroll-disabled="disabled || loading">
-        <goods-item v-for="good in goodList" :goods="good" :key="good.id" />
+      <div v-infinite-scroll="load" class="body" :infinite-scroll-disabled="disabled || loading">
+        <goods-item v-for="good in goodList" :key="good.id" :goods="good" />
       </div>
     </div>
   </div>

@@ -1,12 +1,12 @@
 <template>
   <ul class="app-header-nav">
     <li class="home">
-      <RouterLink to="/home" active-class="active">首页</RouterLink>
+      <RouterLink active-class="active" to="/home">首页</RouterLink>
     </li>
-    <li class="home" v-for="category in categoryStore.categoryList" :key="category.id">
+    <li v-for="category in categoryStore.categoryList" :key="category.id" class="home">
       <RouterLink
-        :to="`/category/${category.id}`"
         :class="{ active: isCategoryActive(category.id) }"
+        :to="`/category/${category.id}`"
       >
         {{ category.name }}
       </RouterLink>

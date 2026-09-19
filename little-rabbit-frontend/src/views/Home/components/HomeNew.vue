@@ -1,5 +1,5 @@
 <template>
-  <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
+  <HomePanel sub-title="新鲜出炉 品质靠谱" title="新鲜好物">
     <template #main>
       <ul class="goods-list">
         <li v-for="item in newList" :key="item.id">

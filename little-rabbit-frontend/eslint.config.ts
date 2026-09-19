@@ -22,6 +22,25 @@ export default defineConfigWithVueTs(
   {
     rules: {
       'vue/multi-word-component-names': 'off',
+      'vue/attributes-order': [
+        'error',
+        {
+          order: [
+            'DEFINITION',
+            'LIST_RENDERING',
+            'CONDITIONALS',
+            'RENDER_MODIFIERS',
+            'GLOBAL',
+            ['UNIQUE', 'SLOT'],
+            'TWO_WAY_BINDING',
+            'OTHER_DIRECTIVES',
+            ['ATTR_DYNAMIC', 'ATTR_STATIC', 'ATTR_SHORTHAND_BOOL'],
+            'EVENTS',
+            'CONTENT',
+          ],
+          alphabetical: true, // 同一分组内是否按字母序排列
+        },
+      ],
     },
   },
   vueTsConfigs.recommended,

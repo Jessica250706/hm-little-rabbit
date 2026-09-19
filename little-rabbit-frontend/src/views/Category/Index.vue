@@ -12,7 +12,7 @@
       <div class="home-banner">
         <el-carousel height="500px">
           <el-carousel-item v-for="item in bannerList" :key="item.id">
-            <img :src="item.imgUrl" alt="" />
+            <img alt="" :src="item.imgUrl" />
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -28,12 +28,12 @@
           </li>
         </ul>
       </div>
-      <div class="ref-goods" v-for="item in categoryData?.children" :key="item.id">
+      <div v-for="item in categoryData?.children" :key="item.id" class="ref-goods">
         <div class="head">
           <h3>- {{ item.name }}-</h3>
         </div>
         <div class="body">
-          <GoodsItem v-for="good in item.goods" :goods="good" :key="good.id" />
+          <GoodsItem v-for="good in item.goods" :key="good.id" :goods="good" />
         </div>
       </div>
     </div>
