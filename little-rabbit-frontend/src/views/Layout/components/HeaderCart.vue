@@ -28,7 +28,7 @@
           <p>共 {{ cartStore.allCount }} 件商品</p>
           <p>&yen; {{ cartStore.allPrice.toFixed(2) }}</p>
         </div>
-        <el-button size="large" type="primary" @click="$router.push('/cartlist')">
+        <el-button size="large" type="primary" @click="$router.push('/cartList')">
           去购物车结算
         </el-button>
       </div>

@@ -157,7 +157,6 @@ const skuChange = (sku: SkuChangePayload) => {
 const countChange = () => {}
 
 const addGoodToCart = () => {
-  console.log('skuObj.value:', skuObj.value)
   if (skuObj.value) {
     // 已选择
     const params: AddCartPayload = {
@@ -168,11 +167,9 @@ const addGoodToCart = () => {
       count: count.value,
       skuId: skuObj.value.skuId,
       attrsText: skuObj.value.specsText,
-      selected: true,
+      selected: false,
     }
-    console.log('已选择:', params)
     cartStore.addCart(params)
-    console.log(cartStore.cartList)
   } else {
     //未选择，提示用户
     ElMessage.warning('请选择规格')

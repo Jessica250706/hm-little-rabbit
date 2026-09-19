@@ -7,15 +7,27 @@ export const useCartStore = defineStore(
   () => {
     // state
     const cartList = ref<AddCartPayload[]>([])
+
+    const selectedCount = computed(() =>
+      cartList.value.filter((item) => item.selected).reduce((a, c) => a + (c.count ?? 0), 0),
+    )
+    const selectedPrice = computed(() =>
+      cartList.value
+        .filter((item) => item.selected)
+        .reduce((a, c) => a + (c.count ?? 0) * Number(c.price), 0),
+    )
+
     const allCount = computed(() => cartList.value.reduce((a, c) => a + (c.count ?? 0), 0))
     const allPrice = computed(() =>
-      cartList.value.reduce((a, c) => a + (c.count ?? 0) * (c.price ? Number(c.price) : 0), 0),
+      cartList.value.reduce((a, c) => a + (c.count ?? 0) * Number(c.price), 0),
     )
+
+    const isAll = computed(() => cartList.value.every((item) => item.selected))
 
     // action
     const addCart = (goods: AddCartPayload) => {
       // 添加购物车操作
-      // 思路：通过匹配传递过来的商品对象中的skuId能不能在cartList中找到，找到了就是添加过
+      // 思路：通过匹配传递过来的商品对象中的 skuId 能不能在 cartList 中找到，找到了就是添加过
       const item = cartList.value?.find((item) => goods.skuId === item.skuId)
       if (item) {
         // 已添加过 - count + 1
@@ -24,6 +36,10 @@ export const useCartStore = defineStore(
         // 没有添加过 - 直接 push
         cartList.value?.push(goods)
       }
+    }
+
+    const allCheck = (selected: boolean) => {
+      cartList.value.forEach((item) => (item.selected = selected))
     }
 
     const delCart = (skuId: string) => {
@@ -39,9 +55,13 @@ export const useCartStore = defineStore(
 
     return {
       cartList,
+      selectedCount,
+      selectedPrice,
       allCount,
       allPrice,
+      isAll,
       addCart,
+      allCheck,
       delCart,
       clearCart,
     }
