@@ -86,10 +86,10 @@
               <!-- sku组件 -->
               <xtx-sku v-if="goodDetail" :goods="goodDetail" @change="skuChange" />
               <!-- 数据组件 -->
-
+              <el-input-number v-model="count" @change="countChange" />
               <!-- 按钮组件 -->
               <div>
-                <el-button class="btn" size="large">加入购物车</el-button>
+                <el-button class="btn" size="large" @click="addGoodToCart">加入购物车</el-button>
               </div>
             </div>
           </div>
@@ -127,15 +127,22 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
+import { ElMessage } from 'element-plus'
 import { useRoute } from 'vue-router'
 import { getGoodsDetailAPI } from '@/api/goods'
+import type { SkuChangePayload } from '@/components/XtxSku/type.ts'
 import { HotType } from '@/constants/goods'
-import type { GoodsDetailVO, Skus } from '@/types/goods'
+import { useCartStore } from '@/stores/cart.ts'
+import type { AddCartPayload } from '@/types/cart'
+import type { GoodsDetailVO } from '@/types/goods'
 import DetailHot from './components/DetailHot.vue'
 
 const route = useRoute()
 const id = typeof route.params.id === 'string' ? route.params.id : ''
+const cartStore = useCartStore()
 
+const count = ref<number>(1)
+const skuObj = ref<SkuChangePayload>()
 const goodDetail = ref<GoodsDetailVO>()
 
 const getGoodsDetail = async () => {
@@ -143,8 +150,33 @@ const getGoodsDetail = async () => {
   goodDetail.value = res.result
 }
 
-const skuChange = (sku: Skus) => {
-  console.log(sku)
+const skuChange = (sku: SkuChangePayload) => {
+  skuObj.value = sku
+}
+
+const countChange = () => {}
+
+const addGoodToCart = () => {
+  console.log('skuObj.value:', skuObj.value)
+  if (skuObj.value) {
+    // 已选择
+    const params: AddCartPayload = {
+      id: goodDetail.value?.id,
+      name: goodDetail.value?.name,
+      picture: goodDetail.value?.mainPictures[0],
+      price: goodDetail.value?.price,
+      count: count.value,
+      skuId: skuObj.value.skuId,
+      attrsText: skuObj.value.specsText,
+      selected: true,
+    }
+    console.log('已选择:', params)
+    cartStore.addCart(params)
+    console.log(cartStore.cartList)
+  } else {
+    //未选择，提示用户
+    ElMessage.warning('请选择规格')
+  }
 }
 
 onMounted(() => {

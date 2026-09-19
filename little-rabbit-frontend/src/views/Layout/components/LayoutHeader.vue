@@ -11,12 +11,14 @@
         <input placeholder="搜一搜" type="text" />
       </div>
       <!-- 头部购物车 -->
+      <HeaderCart />
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
 import AppHeaderNav from './AppHeaderNav.vue'
+import HeaderCart from './HeaderCart.vue'
 </script>
 
 <style scoped lang="scss">
