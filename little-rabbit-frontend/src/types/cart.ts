@@ -103,3 +103,19 @@ export interface AddCartPayload {
   selected?: boolean
   [property: string]: any
 }
+
+export interface AddCartDTO {
+  /**
+   * 商品数量
+   */
+  count: number
+  /**
+   * 商品sku的id
+   */
+  skuId: string
+  [property: string]: any
+}
+
+export interface BatchDeleteCartVo {
+  ids: string[]
+}

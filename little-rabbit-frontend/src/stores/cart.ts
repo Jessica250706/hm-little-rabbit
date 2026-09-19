@@ -1,11 +1,18 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { AddCartPayload } from '@/types/cart'
+import { addCartAPI, delCartAPI, getCartListAPI } from '@/api/cart'
+import type { AddCartDTO, AddCartPayload } from '@/types/cart'
+import { useUserStore } from './user'
 
 export const useCartStore = defineStore(
   'cart',
   () => {
-    // state
+    const userStore = useUserStore()
+    const isLogin = computed(() => userStore.userInfo?.token)
+
+    /**
+     * state
+     */
     const cartList = ref<AddCartPayload[]>([])
 
     const selectedCount = computed(() =>
@@ -24,17 +31,34 @@ export const useCartStore = defineStore(
 
     const isAll = computed(() => cartList.value.every((item) => item.selected))
 
-    // action
-    const addCart = (goods: AddCartPayload) => {
-      // 添加购物车操作
-      // 思路：通过匹配传递过来的商品对象中的 skuId 能不能在 cartList 中找到，找到了就是添加过
-      const item = cartList.value?.find((item) => goods.skuId === item.skuId)
-      if (item) {
-        // 已添加过 - count + 1
-        item.count = (item.count ?? 0) + 1
+    /**
+     * action
+     */
+    const updateCartList = async () => {
+      const res = await getCartListAPI()
+      cartList.value = res.result
+    }
+
+    const addCart = async (goods: AddCartPayload) => {
+      if (isLogin.value) {
+        // 已登录
+        const data: AddCartDTO = {
+          skuId: goods.skuId ?? '',
+          count: goods.count ?? 0,
+        }
+        await addCartAPI(data)
+        updateCartList()
       } else {
-        // 没有添加过 - 直接 push
-        cartList.value?.push(goods)
+        // 未登录-添加购物车操作
+        // 思路：通过匹配传递过来的商品对象中的 skuId 能不能在 cartList 中找到，找到了就是添加过
+        const item = cartList.value?.find((item) => goods.skuId === item.skuId)
+        if (item) {
+          // 已添加过 - count + 1
+          item.count = (item.count ?? 0) + 1
+        } else {
+          // 没有添加过 - 直接 push
+          cartList.value?.push(goods)
+        }
       }
     }
 
@@ -42,11 +66,16 @@ export const useCartStore = defineStore(
       cartList.value.forEach((item) => (item.selected = selected))
     }
 
-    const delCart = (skuId: string) => {
-      // 1. 找到要删除项的下标值 - splice
-      const idx = cartList.value.findIndex((item) => skuId === item.skuId)
-      // 2. 使用数组的过滤方法 - filter
-      cartList.value.splice(idx, 1)
+    const delCart = async (skuId: string) => {
+      if (isLogin.value) {
+        await delCartAPI([skuId])
+        updateCartList()
+      } else {
+        // 1. 找到要删除项的下标值 - splice
+        const idx = cartList.value.findIndex((item) => skuId === item.skuId)
+        // 2. 使用数组的过滤方法 - filter
+        cartList.value.splice(idx, 1)
+      }
     }
 
     const clearCart = () => {
@@ -60,6 +89,7 @@ export const useCartStore = defineStore(
       allCount,
       allPrice,
       isAll,
+      updateCartList,
       addCart,
       allCheck,
       delCart,
