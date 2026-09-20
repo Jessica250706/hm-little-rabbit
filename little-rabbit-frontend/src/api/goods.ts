@@ -25,3 +25,14 @@ export const getHotGoodsAPI = ({ id, type, limit = 3 }: HotGoodsParams) => {
     },
   })
 }
+
+/**
+ * 获取猜你喜欢商品
+ */
+export const getLikeListAPI = ({ limit = 4 }) => {
+  return request.get<Good[]>('/goods/relevant', {
+    params: {
+      limit,
+    },
+  })
+}

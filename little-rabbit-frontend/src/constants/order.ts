@@ -3,6 +3,8 @@
  * 1为待付款、2为待发货、3为待收货、4为待评价、5为已完成、6为已取消
  */
 export const OrderState = {
+  /** 全部 */
+  ALL: 0,
   /** 待付款 */
   UNPAID: 1,
   /** 待发货 */
@@ -21,6 +23,7 @@ export type OrderStateValue = (typeof OrderState)[keyof typeof OrderState]
 
 /** 订单状态 → 中文文案 */
 export const OrderStateMap: Record<OrderStateValue, string> = {
+  [OrderState.ALL]: '全部订单',
   [OrderState.UNPAID]: '待付款',
   [OrderState.UNSHIPPED]: '待发货',
   [OrderState.SHIPPED]: '待收货',

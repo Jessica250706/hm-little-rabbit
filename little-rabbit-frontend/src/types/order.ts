@@ -1,4 +1,5 @@
 import type { OrderStateValue, PayChannelValue, PayTypeValue } from '@/constants/order'
+import type { PageResult } from './page'
 
 /**
  * 响应结果
@@ -399,3 +400,83 @@ export interface SubmitOrderVO {
   totalNum: number
   [property: string]: any
 }
+
+/**
+ * 获取订单列表的请求参数
+ */
+export interface GetUserOrderParams {
+  /**
+   * 订单状态
+   * 0 表示全部，其余对应 OrderState 的值
+   */
+  orderState: OrderStateValue
+  /**
+   * 页码，从 1 开始
+   */
+  page: number
+  /**
+   *
+   * 每页数量
+   */
+  pageSize: number
+}
+
+/**
+ * 获取我的订单的订单结构
+ */
+export interface MyOrderVO {
+  /**
+   * 订单倒计时，剩余的秒数 -1 表示已经超时，正数表示倒计时未结束
+   */
+  countdown: number | null
+  /**
+   * 订单创建时间
+   */
+  createTime: string
+  /**
+   * 订单id
+   */
+  id: string
+  /**
+   * 订单状态，1为待付款、2为待发货、3为待收货、4为待评价、5为已完成、6为已取消
+   */
+  orderState: OrderStateValue
+  /**
+   * 订单支付渠道，1支付宝、2微信
+   */
+  payChannel: PayChannelValue
+  /**
+   * 订单付款截止时间，剩余的秒数，前台转换成分钟：秒数
+   */
+  payLatestTime: string
+  /**
+   * 订单实付金额
+   */
+  payMoney: number
+  /**
+   * 订单支付方式，1为在线支付，2为货到付款
+   */
+  payType: PayTypeValue
+  /**
+   * 订单邮费
+   */
+  postFee: number
+  /**
+   * 订单商品sku的id集合
+   */
+  skus: OrderSkus[]
+  /**
+   * 订单金额合计
+   */
+  totalMoney: number
+  /**
+   * 订单数量合计
+   */
+  totalNum: number
+  [property: string]: any
+}
+
+/**
+ * 订单列表返回结果
+ */
+export type UserOrderResult = PageResult<MyOrderVO>

@@ -16,7 +16,7 @@
         <el-tab-pane label="评论最多" :name="SortField.EVALUATE_NUM" />
       </el-tabs>
       <div v-infinite-scroll="load" class="body" :infinite-scroll-disabled="disabled || loading">
-        <goods-item v-for="good in goodList" :key="good.id" :goods="good" />
+        <GoodItem v-for="good in goodList" :key="good.id" :good="good" />
       </div>
     </div>
   </div>
@@ -29,7 +29,6 @@ import { getCategoryFilterAPI, getSubCategoryAPI } from '@/api/category'
 import { SortField } from '@/constants/category'
 import type { CategoryDetailVO, CategoryGoodsParams } from '@/types/category'
 import type { Good } from '@/types/goods'
-import GoodsItem from '@/views/Home/components/GoodsItem.vue'
 
 const route = useRoute()
 const categoryId = typeof route.params.subId === 'string' ? route.params.subId : ''

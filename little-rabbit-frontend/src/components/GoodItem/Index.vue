@@ -1,9 +1,9 @@
 <template>
   <RouterLink class="goods-item" to="/">
-    <img v-img-lazy="goods.picture" alt="" />
-    <p class="name ellipsis">{{ goods.name }}</p>
-    <p class="desc ellipsis">{{ goods.desc }}</p>
-    <p class="price">&yen;{{ goods.price }}</p>
+    <img v-img-lazy="good.picture" alt="" />
+    <p class="name ellipsis">{{ good.name }}</p>
+    <p class="desc ellipsis">{{ good.desc }}</p>
+    <p class="price">&yen;{{ good.price }}</p>
   </RouterLink>
 </template>
 
@@ -11,7 +11,7 @@
 import type { Good } from '@/types/goods'
 
 defineProps<{
-  goods: Good
+  good: Good
 }>()
 </script>
 

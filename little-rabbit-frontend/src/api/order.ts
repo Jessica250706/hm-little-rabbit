@@ -1,4 +1,11 @@
-import type { CheckoutInfoResult, OrderDetail, SubmitOrderDTO, SubmitOrderVO } from '@/types/order'
+import type {
+  CheckoutInfoResult,
+  GetUserOrderParams,
+  OrderDetail,
+  SubmitOrderDTO,
+  SubmitOrderVO,
+  UserOrderResult,
+} from '@/types/order'
 import request from '@/utils/http'
 
 /**
@@ -20,4 +27,11 @@ export const getOrderDetailAPI = (id: string) => {
  */
 export const createOrderAPI = (data: SubmitOrderDTO) => {
   return request.post<SubmitOrderVO>('/member/order', data)
+}
+
+/**
+ * @description: 获取-我的订单
+ */
+export const getUserOrder = (params: GetUserOrderParams) => {
+  return request.get<UserOrderResult>('/member/order', { params })
 }

@@ -38,7 +38,7 @@ interface HttpInstance {
 
 const httpInstance = axios.create({
   baseURL: '/api',
-  timeout: 5000,
+  timeout: 10000,
 })
 
 httpInstance.interceptors.request.use(

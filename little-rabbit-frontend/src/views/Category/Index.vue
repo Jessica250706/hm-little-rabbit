@@ -33,7 +33,7 @@
           <h3>- {{ item.name }}-</h3>
         </div>
         <div class="body">
-          <GoodsItem v-for="good in item.goods" :key="good.id" :goods="good" />
+          <GoodItem v-for="good in item.goods" :key="good.id" :good="good" />
         </div>
       </div>
     </div>
@@ -43,7 +43,6 @@
 <script lang="ts" setup>
 import { useBanner } from '@/views/Category/composables/useBanner'
 import { useCategory } from '@/views/Category/composables/useCategory'
-import GoodsItem from '@/views/Home/components/GoodsItem.vue'
 
 const { categoryData } = useCategory()
 const { bannerList } = useBanner()

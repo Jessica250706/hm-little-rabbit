@@ -1,6 +1,7 @@
 import type { HomeGoodsChild } from './home'
 import type { Good } from './goods'
 import type { SortFieldType } from '@/constants/category'
+import type { PageResult } from './page'
 
 /**
  * 响应结果
@@ -91,25 +92,4 @@ export interface CategoryGoodsParams {
 /**
  * 分页商品列表结果
  */
-export interface CategoryGoodsVO {
-  /**
-   * 总条数
-   */
-  counts: number
-  /**
-   * 当前页码
-   */
-  page: number
-  /**
-   * 每页条数
-   */
-  pageSize: number
-  /**
-   * 总页数
-   */
-  pages: number
-  /**
-   * 商品列表
-   */
-  items: Good[]
-}
+export type CategoryGoodsVO = PageResult<Good[]>

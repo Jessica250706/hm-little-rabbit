@@ -12,7 +12,7 @@
           </RouterLink>
           <ul class="goods-list">
             <li v-for="good in cate.goods" :key="good.id">
-              <GoodsItem :goods="good" />
+              <GoodItem :good="good" />
             </li>
           </ul>
         </div>
@@ -25,7 +25,6 @@
 import { onMounted, ref } from 'vue'
 import { getGoodsAPI } from '@/api/home.ts'
 import type { HomeGoodsVO } from '@/types/home'
-import GoodsItem from './GoodsItem.vue'
 import HomePanel from './HomePanel.vue'
 
 const goodsProduct = ref<HomeGoodsVO[]>([])
