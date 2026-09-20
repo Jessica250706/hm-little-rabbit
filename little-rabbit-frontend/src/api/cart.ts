@@ -1,4 +1,4 @@
-import type { AddCartDTO, BatchDeleteCartVo, CartDetail } from '@/types/cart'
+import type { AddCartDTO, BatchDeleteCartDTO, CartDetail, CartSkuDTO } from '@/types/cart'
 import request from '@/utils/http'
 
 /**
@@ -19,5 +19,12 @@ export const getCartListAPI = () => {
  * @description: 删除-购物车商品
  */
 export const delCartAPI = (ids: Array<string>) => {
-  return request.delete('/member/cart', { data: { ids } as BatchDeleteCartVo })
+  return request.delete('/member/cart', { data: { ids } as BatchDeleteCartDTO })
+}
+
+/**
+ * @description: 合并购物车
+ */
+export const mergeCartAPI = (data: CartSkuDTO[]) => {
+  return request.post('/member/cart/merge', data)
 }

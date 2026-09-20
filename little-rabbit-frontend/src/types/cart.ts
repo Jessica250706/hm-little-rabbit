@@ -116,6 +116,25 @@ export interface AddCartDTO {
   [property: string]: any
 }
 
-export interface BatchDeleteCartVo {
+export interface BatchDeleteCartDTO {
   ids: string[]
+}
+
+/**
+ * 购物车sku集合
+ */
+export interface CartSkuDTO {
+  /**
+   * 商品数量
+   */
+  count: number
+  /**
+   * 商品选中状态
+   */
+  selected: boolean
+  /**
+   * 商品sku的id
+   */
+  skuId: string
+  [property: string]: any
 }
