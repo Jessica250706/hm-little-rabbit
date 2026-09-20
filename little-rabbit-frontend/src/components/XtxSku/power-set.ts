@@ -16,12 +16,11 @@ export default function bwPowerSet<T>(originalSet: T[]): T[][] {
   for (let combinationIndex = 0; combinationIndex < numberOfCombinations; combinationIndex += 1) {
     const subSet: T[] = []
 
-    for (let setElementIndex = 0; setElementIndex < originalSet.length; setElementIndex += 1) {
-      // 判断当前元素是否要加入子集
+    originalSet.forEach((element, setElementIndex) => {
       if (combinationIndex & (1 << setElementIndex)) {
-        subSet.push(originalSet[setElementIndex])
+        subSet.push(element)
       }
-    }
+    })
 
     subSets.push(subSet)
   }

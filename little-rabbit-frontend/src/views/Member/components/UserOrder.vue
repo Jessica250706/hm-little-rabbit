@@ -15,7 +15,7 @@
               <span>下单时间：{{ order.createTime }}</span>
               <span>订单编号：{{ order.id }}</span>
               <!-- 未付款，倒计时时间还有 -->
-              <span v-if="order.orderState === 1" class="down-time">
+              <span v-if="order.orderState === OrderState.UNPAID" class="down-time">
                 <i class="iconfont icon-down-time"></i>
                 <b>
                   付款截止:
@@ -49,19 +49,19 @@
               </div>
               <div class="column state">
                 <p>{{ OrderStateMap[order.orderState] }}</p>
-                <p v-if="order.orderState === 3">
+                <p v-if="order.orderState === OrderState.SHIPPED">
                   <a class="green" href="javascript:;">查看物流</a>
                 </p>
-                <p v-if="order.orderState === 4">
+                <p v-if="order.orderState === OrderState.UNCOMMENTED">
                   <a class="green" href="javascript:;">评价商品</a>
                 </p>
-                <p v-if="order.orderState === 5">
+                <p v-if="order.orderState === OrderState.COMPLETED">
                   <a class="green" href="javascript:;">查看评价</a>
                 </p>
               </div>
               <div class="column amount">
-                <p class="red">¥{{ order.payMoney?.toFixed(2) }}</p>
-                <p>（含运费：¥{{ order.postFee?.toFixed(2) }}）</p>
+                <p class="red">¥ {{ order.payMoney?.toFixed(2) }}</p>
+                <p>（含运费：¥ {{ order.postFee?.toFixed(2) }} ）</p>
                 <p>在线支付</p>
               </div>
               <div class="column action">
@@ -73,14 +73,18 @@
                 >
                   立即付款
                 </el-button>
-                <el-button v-if="order.orderState === 3" size="small" type="primary">
+                <el-button
+                  v-if="order.orderState === OrderState.SHIPPED"
+                  size="small"
+                  type="primary"
+                >
                   确认收货
                 </el-button>
                 <p><a href="javascript:;">查看详情</a></p>
-                <p v-if="[2, 3, 4, 5].includes(order.orderState)">
+                <p v-if="canBuyAgain.includes(order.orderState)">
                   <a href="javascript:;">再次购买</a>
                 </p>
-                <p v-if="[4, 5].includes(order.orderState)">
+                <p v-if="canApplyAfterSale.includes(order.orderState)">
                   <a href="javascript:;">申请售后</a>
                 </p>
                 <p v-if="order.orderState === 1"><a href="javascript:;">取消订单</a></p>
@@ -111,6 +115,14 @@ import { OrderState, OrderStateMap } from '@/constants/order'
 import type { OrderStateValue } from '@/constants/order'
 import type { GetUserOrderParams, MyOrderVO } from '@/types/order'
 import type { TabPaneName } from 'element-plus'
+
+const canBuyAgain: OrderStateValue[] = [
+  OrderState.UNSHIPPED,
+  OrderState.SHIPPED,
+  OrderState.UNCOMMENTED,
+  OrderState.COMPLETED,
+]
+const canApplyAfterSale: OrderStateValue[] = [OrderState.UNCOMMENTED, OrderState.COMPLETED]
 
 // tab列表
 const tabTypes = Object.entries(OrderStateMap).map(([value, label]) => ({

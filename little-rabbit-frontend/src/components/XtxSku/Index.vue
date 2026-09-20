@@ -67,7 +67,10 @@ const getPathMap = (skus: Skus[]): PathMap => {
     // 4. 设置给路径字典对象
     powerSet.forEach((set) => {
       const key = set.join(spliter)
-      ;(pathMap[key] ??= []).push(sku.id)
+      if (!pathMap[key]) {
+        pathMap[key] = []
+      }
+      pathMap[key].push(sku.id)
     })
   })
 

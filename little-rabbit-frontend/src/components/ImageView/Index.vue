@@ -9,7 +9,7 @@
         height: `${IMAGE_CONFIG.middleHeight}px`,
       }"
     >
-      <img alt="" :src="imageList[activeIndex]" />
+      <img alt="" :src="imageList[activeIndex] as string" />
       <!-- 蒙层小滑块 -->
       <div
         v-show="!isOutside"
@@ -31,7 +31,7 @@
         :class="{ active: index === activeIndex }"
         @mouseenter="handleEnter(index)"
       >
-        <img alt="" :src="img" />
+        <img alt="" :src="img as string" />
       </li>
     </ul>
     <!-- 放大镜大图 -->
